@@ -7,5 +7,15 @@ export async function getGitHubUser(userName) {
         throw new Error('Usuário não encontrado. Verifique o nome e tente novamente.');
     }
 
-    return response.json();
+    return await response.json();
+}
+
+export async function getGitHubUserRepos(userName) {
+    const response = await fetch(`${BASE_URL}/users/${userName}/repos?per_page=10&sort=created`);
+
+    if (!response.ok) {
+        throw new Error('Não foi possível obter os repositórios do usuário. Tente novamente mais tarde.');
+    }
+
+    return await response.json();
 }
