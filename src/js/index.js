@@ -5,6 +5,16 @@ const btnSearch = document.getElementById('btn-search');
 const inputSearch = document.getElementById('input-search');
 const profileResults = document.querySelector('.profile-results');
 
+inputSearch.addEventListener('keyup', (e) => {
+    const userName = e.target.value;
+    const key = e.which || e.keyCode;
+    const isEnterKeyPressed = key === 13;
+
+    if (isEnterKeyPressed) {
+        btnSearch.click();
+    }
+});
+
 btnSearch.addEventListener('click', async () => {
     const userName = inputSearch.value.trim();
 
@@ -27,4 +37,6 @@ btnSearch.addEventListener('click', async () => {
             : 'Ocorreu um erro ao buscar o perfil. Tente novamente mais tarde.';
         renderErrorMessage(profileResults, errorMessage);
     }
+
 });
+
